@@ -16,7 +16,9 @@ router.post(
   '/line-webhook',
   c2k(line.middleware(config)),
   async function (ctx, next) {
-    const replies = await Promise.all(ctx.body.events.map(handleEvent))
+    console.log(ctx.request.events)
+    const replies = await Promise.all(ctx.request.events.map(handleEvent))
+    console.log(replies)
     ctx.body = replies
 })
 

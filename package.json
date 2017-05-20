@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Eason Chiang",
   "license": "MIT",
+  "engines": {
+    "node": "^7.6.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/EasonChiang7178/LINE-Bot-Boilerplate.git"

@@ -20,9 +20,8 @@
     "koa-router": "^7.1.1"
   },
   "scripts": {
-    "dev": "cp .env.dev .env && npm run check-env && npm start",
-    "prod": "cp .env.prod .env && npm run check-env && npm start",
-    "check-env": "node checkEnv.js",
+    "dev": "cp .env.dev .env && npm start",
+    "prod": "cp .env.prod .env && npm start",
     "start": "node index.js"
   }
 }

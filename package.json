@@ -13,8 +13,8 @@
     "url": "https://github.com/EasonChiang7178/LINE-Bot-Boilerplate.git"
   },
   "scripts": {
-    "dev": "./node_modules/.bin/nodemon app.js",
-    "start": "node app.js"
+    "dev": "nodemon app.js",
+    "start": "cross-env NODE_ENV=production node app.js"
   },
   "dependencies": {
     "dotenv-safe": "^4.0.4",
@@ -23,6 +23,7 @@
     "koa2-better-body": "^0.1.1"
   },
   "devDependencies": {
+    "cross-env": "^5.0.0",
     "nodemon": "^1.11.0"
   }
 }

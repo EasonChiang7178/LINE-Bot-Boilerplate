@@ -12,15 +12,17 @@
     "type": "git",
     "url": "https://github.com/EasonChiang7178/LINE-Bot-Boilerplate.git"
   },
+  "scripts": {
+    "dev": "./node_modules/.bin/nodemon index.js",
+    "start": "node index.js"
+  },
   "dependencies": {
     "dotenv-safe": "^4.0.4",
     "koa": "^2.2.0",
     "koa-router": "^7.1.1",
     "koa2-better-body": "^0.1.1"
   },
-  "scripts": {
-    "dev": "cp .env.dev .env && npm start",
-    "prod": "cp .env.prod .env && npm start",
-    "start": "node index.js"
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

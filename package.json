@@ -15,7 +15,7 @@
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon src/app.js",
-    "test": "npm run flow-status && npm run eslint",
+    "test": "mocha --watch",
     "flow-start": "flow start",
     "flow-stop": "flow start",
     "flow-status": "flow status",
@@ -23,10 +23,9 @@
     "prettier": "prettier --single-quote --trailing-comma all --parser flow --no-semi --write \"*.js\"",
     "start": "node dist/app.js",
     "build": "flow-remove-types src/ -d dist/",
-    "prepublish": "npm run build"
+    "prepublish": "npm run flow-status && npm run eslint && npm test && npm run build"
   },
   "dependencies": {
-    "cross-env": "^5.0.0",
     "dotenv-safe": "^4.0.4",
     "koa": "^2.2.0",
     "koa-router": "^7.1.1",
@@ -34,6 +33,8 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
+    "cross-env": "^5.0.0",
+    "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
     "eslint-config-prettier": "^2.1.1",
@@ -41,8 +42,10 @@
     "eslint-plugin-prettier": "^2.1.1",
     "flow-bin": "^0.46.0",
     "flow-remove-types": "^1.2.1",
+    "mocha": "^3.4.1",
     "nodemon": "^1.11.0",
     "prettier": "^1.3.1",
-    "prettier-eslint": "^6.2.3"
+    "prettier-eslint": "^6.2.3",
+    "supertest": "^3.0.0"
   }
 }

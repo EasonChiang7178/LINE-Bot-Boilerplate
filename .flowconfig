@@ -1,6 +1,7 @@
 [ignore]
 <PROJECT_ROOT>/dist/*.js
 <PROJECT_ROOT>/node_modules/.*
+<PROJECT_ROOT>/test/.*
 
 [include]
 src/*.js

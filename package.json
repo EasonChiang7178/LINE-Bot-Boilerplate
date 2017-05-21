@@ -2,7 +2,7 @@
   "name": "LINE-Bot-Boilerplate",
   "version": "0.1.0",
   "description": "LINE-Bot Boilerplate by Koa2",
-  "main": "index.js",
+  "main": "app.js",
   "author": "Eason Chiang",
   "license": "MIT",
   "engines": {
@@ -13,8 +13,8 @@
     "url": "https://github.com/EasonChiang7178/LINE-Bot-Boilerplate.git"
   },
   "scripts": {
-    "dev": "./node_modules/.bin/nodemon index.js",
-    "start": "node index.js"
+    "dev": "./node_modules/.bin/nodemon app.js",
+    "start": "node app.js"
   },
   "dependencies": {
     "dotenv-safe": "^4.0.4",

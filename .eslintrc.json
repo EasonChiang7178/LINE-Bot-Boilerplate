@@ -1,13 +1,14 @@
 {
+  "parser": "babel-eslint",
   "extends": [
     "eslint:recommended",
     "google",
-    // "plugin:flowtype/recommended",
-    "prettier"
-    // "prettier/flowtype"
+    "plugin:flowtype/recommended",
+    "prettier",
+    "prettier/flowtype"
   ],
   "plugins": [
-    // "flowtype",
+    "flowtype",
     "prettier"
   ],
   "parserOptions": {
@@ -19,13 +20,20 @@
     "node": true
   },
   "rules": {
-    "eqeqeq": ["warn", "smart"],
-    "prettier/prettier": ["warn", {
-      "singleQuote": true,
-      "trailingComma": "all",
-      "bracketSpacing": true,
-      "semi": false,
-      "parser": "flow"
-    }]
+    "eqeqeq": [
+      "warn",
+      "smart"
+    ],
+    "flowtype/no-types-missing-file-annotation": "off",
+    "prettier/prettier": [
+      "warn",
+      {
+        "singleQuote": true,
+        "trailingComma": "all",
+        "bracketSpacing": true,
+        "semi": false,
+        "parser": "flow"
+      }
+    ]
   }
 }

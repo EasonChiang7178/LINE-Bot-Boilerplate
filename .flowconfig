@@ -1,0 +1,12 @@
+[ignore]
+<PROJECT_ROOT>/dist/*.js
+<PROJECT_ROOT>/node_modules/.*
+
+[include]
+src/*.js
+
+[libs]
+./flow-typed/libdefs/js
+
+[options]
+all=true

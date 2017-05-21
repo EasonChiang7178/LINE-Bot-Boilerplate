@@ -11,7 +11,7 @@ const config = {
 
 const router = new Router();
 router.post('/line-webhook', bodyParser(), async function (ctx, next) {
-    console.log(JSON.stringify(ctx.request.fields, null, 2);
+    console.log(JSON.stringify(ctx.request.fields, null, 2));
     await next();
     // const replies = await Promise.all(ctx.request.events.map(handleEvent))
     // console.log(replies)

@@ -1,6 +1,5 @@
 const Koa = require('koa')
-const Router = require('koa-router')
-const bodyParser = require('koa2-better-body')
+const router = require('./routes')
 const config = require('./config')
 
 /* ----- bootstrap server ----- */
@@ -12,21 +11,6 @@ if (config.logger) {
   app.use(logger())
 }
 // use router
-const LINE = require('./service/LINE')
-const router = new Router()
-router.post(
-  '/line-webhook',
-  bodyParser(),
-  LINE.koaValidateMiddleware(),
-  async (ctx, next) => {
-    console.log(JSON.stringify(ctx.request.fields, null, 2))
-    await next()
-    // const replies = await Promise.all(ctx.request.events.map(handleEvent))
-    // console.log(replies)
-    // ctx.body = replies
-  }
-)
-
 app.use(router.routes())
 app.use(router.allowedMethods())
 // setting main business logic

@@ -1,5 +1,15 @@
 const crypto = require('crypto')
 
+const validateSignature = (body, channelSecret, signature) => {
+  const hash = crypto
+    .createHmac('sha256', channelSecret)
+    .update(Buffer.from(JSON.stringify(body), 'utf8'))
+    .digest('base64')
+
+  return hash === signature
+}
+module.exports.validateSignature = validateSignature
+
 module.exports.koaValidateMiddleware = () => {
   return async (ctx, next) => {
     const xLineSignature = ctx.headers['x-line-signature']
@@ -19,13 +29,3 @@ module.exports.koaValidateMiddleware = () => {
     }
   }
 }
-
-const validateSignature = (body, channelSecret, signature) => {
-  const hash = crypto
-    .createHmac('sha256', channelSecret)
-    .update(Buffer.from(JSON.stringify(body), 'utf8'))
-    .digest('base64')
-
-  return hash === signature
-}
-module.exports.validateSignature = validateSignature

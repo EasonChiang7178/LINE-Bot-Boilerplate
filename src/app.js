@@ -5,20 +5,27 @@ const config = require('./config')
 
 /* ----- bootstrap server ----- */
 const app = new Koa()
+app.context.config = config
 // use logger
 if (config.logger) {
   const logger = require('koa-logger')
   app.use(logger())
 }
 // use router
+const LINE = require('./service/LINE')
 const router = new Router()
-router.post('/line-webhook', bodyParser(), async (ctx, next) => {
-  console.log(JSON.stringify(ctx.request.fields, null, 2))
-  await next()
-  // const replies = await Promise.all(ctx.request.events.map(handleEvent))
-  // console.log(replies)
-  // ctx.body = replies
-})
+router.post(
+  '/line-webhook',
+  bodyParser(),
+  LINE.koaValidateMiddleware(),
+  async (ctx, next) => {
+    console.log(JSON.stringify(ctx.request.fields, null, 2))
+    await next()
+    // const replies = await Promise.all(ctx.request.events.map(handleEvent))
+    // console.log(replies)
+    // ctx.body = replies
+  }
+)
 
 app.use(router.routes())
 app.use(router.allowedMethods())

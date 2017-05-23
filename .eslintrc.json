@@ -1,14 +1,10 @@
 {
-  "parser": "babel-eslint",
   "extends": [
     "eslint:recommended",
     "google",
-    "plugin:flowtype/recommended",
-    "prettier",
-    "prettier/flowtype"
+    "prettier"
   ],
   "plugins": [
-    "flowtype",
     "prettier"
   ],
   "parserOptions": {
@@ -25,15 +21,13 @@
       "warn",
       "smart"
     ],
-    "flowtype/no-types-missing-file-annotation": "off",
     "prettier/prettier": [
       "warn",
       {
         "singleQuote": true,
-        "trailingComma": "all",
+        "trailingComma": "es6",
         "bracketSpacing": true,
-        "semi": false,
-        "parser": "flow"
+        "semi": false
       }
     ]
   }

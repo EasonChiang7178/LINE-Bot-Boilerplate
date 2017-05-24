@@ -1,3 +1,6 @@
+require('es6-promise').polyfill()
+require('isomorphic-fetch')
+
 const commonConfig = {
   lineChannelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN || '',
   lineChannelSecret: process.env.LINE_CHANNEL_SECRET || '',

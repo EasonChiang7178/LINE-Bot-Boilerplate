@@ -1,4 +1,4 @@
-const baseURL = 'https://api.line.me/v2/bot/'
+const baseURL = "https://api.line.me/v2/bot";
 
 module.exports = {
   reply: `${baseURL}/message/reply`,
@@ -8,4 +8,4 @@ module.exports = {
   profile: userId => `${baseURL}/profile/${userId}`,
   leaveGroup: groupId => `${baseURL}/group/${groupId}/leave`,
   leaveRoom: roomId => `${baseURL}/room/${roomId}/leave`
-}
+};

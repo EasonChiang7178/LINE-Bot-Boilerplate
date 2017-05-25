@@ -14,10 +14,12 @@ class client {
   }
 
   replyMessage(replyToken, messages) {
+    console.log(replyToken);
+    console.log(messages);
     return fetch(
       this._getRequest(urls.reply, {
         replyToken,
-        messages: Array.isArray(messages) ? messages : messages
+        messages: Array.isArray(messages) ? messages : [messages]
       })
     );
   }
@@ -26,7 +28,7 @@ class client {
     return fetch(
       this._getRequest(urls.push, {
         to,
-        messages: Array.isArray(messages) ? messages : messages
+        messages: Array.isArray(messages) ? messages : [messages]
       })
     );
   }

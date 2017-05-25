@@ -16,13 +16,15 @@ module.exports = router => {
 
       const echos = events.map(handleEvent);
       const tokens = events.map(event => event.replyToken);
-      const result = await Promise.all(
+      const results = await Promise.all(
         echos.map((echo, index) => {
           return client.replyMessage(tokens[index], echo);
         })
       );
-      console.log(JSON.stringify(result, null, 2));
-      const jsonResult = await result.json();
+      console.log(results);
+      const jsonResult = await Promise.all(
+        results.map(result => result.json())
+      );
       console.log(jsonResult);
       ctx.body = jsonResult;
 

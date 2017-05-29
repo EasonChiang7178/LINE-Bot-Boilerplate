@@ -25,6 +25,7 @@ class SignatureValidationFailed extends ExtendableError {
   constructor(msg, signature) {
     super(msg)
     this.signature = signature
+    this.status = 403
   }
 }
 module.exports.SignatureValidationFailed = SignatureValidationFailed

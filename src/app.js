@@ -1,6 +1,7 @@
 const Koa = require('koa')
 const router = require('./routes')
 const config = require('./config')
+const errorHandler = require('./middleware/errorHandler')
 const echo = require('./middleware/echo')
 
 /* ----- bootstrap server ----- */
@@ -11,6 +12,7 @@ if (config.logger) {
   const logger = require('koa-logger')
   app.use(logger())
 }
+app.use(errorHandler())
 // use router
 app.use(router.routes())
 app.use(router.allowedMethods())

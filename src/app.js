@@ -1,6 +1,7 @@
 const Koa = require('koa')
 const router = require('./routes')
 const config = require('./config')
+const echo = require('./middleware/echo')
 
 /* ----- bootstrap server ----- */
 const app = new Koa()
@@ -14,7 +15,7 @@ if (config.logger) {
 app.use(router.routes())
 app.use(router.allowedMethods())
 // setting main business logic
-
+app.use(echo())
 // listen
 app.listen(config.port, () => {
   console.log(`listening on ${config.port}`) // eslint-disable-line no-console

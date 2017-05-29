@@ -1,38 +1,32 @@
 const Client = require('../../service/LINE/client')
-const lineVerifyMiddleware = require('../../service/LINE/utils')
-  .koaValidateMiddleware
+const lineVerify = require('../../service/LINE/utils').koaValidateMiddleware
 const bodyParser = require('koa2-better-body')
 
 module.exports = router => {
   router.post(
     '/LINE/webhook',
     bodyParser(),
-    lineVerifyMiddleware(),
+    lineVerify(),
     async (ctx, next) => {
+      ctx.request.body = ctx.request.fields.events || ctx.request.body.events
+      await next()
+
       const client = new Client(ctx.config)
-
-      const events = ctx.request.fields.events
-
-      const echos = events.map(handleEvent)
-      const tokens = events.map(event => event.replyToken)
+      const events = ctx.request.events
       const results = await Promise.all(
-        echos.map((echo, index) => {
-          return client.replyMessage(tokens[index], echo)
+        events.map(e => {
+          switch (e.type) {
+            case 'reply':
+              return client.replyMessage(e.target, e.message)
+            case 'push':
+              return client.pushMessage(e.target, e.message)
+            default:
+              throw new TypeError('Unknown handler for LINE client!')
+          }
         })
       )
 
-      const jsonResult = await Promise.all(results.map(result => result.json()))
-      ctx.body = jsonResult
-
-      await next()
+      ctx.body = await Promise.all(results.map(result => result.json()))
     }
   )
-}
-
-const handleEvent = event => {
-  if (event.type !== 'message' || event.message.type !== 'text') {
-    return null
-  }
-  const echo = { type: 'text', text: event.message.text }
-  return echo
 }

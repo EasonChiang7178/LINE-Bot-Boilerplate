@@ -9,16 +9,32 @@ module.exports = router => {
     lineVerify(),
     async (ctx, next) => {
       ctx.request.body = ctx.request.fields.events || ctx.request.body.events
+      console.log(JSON.stringify(ctx.request.body, null, 2))
       await next()
 
       const client = new Client(ctx.config)
       const events = ctx.request.events
       const results = await Promise.all(
-        events.map(e => {
+        events.map(async e => {
+          let userDisplayName = ''
+          if (e.event === 'follow') {
+            const name = await client.getProfile(e.target)
+            userDisplayName = await name.json()
+          }
+
           switch (e.type) {
             case 'reply':
               return client.replyMessage(e.target, e.message)
             case 'push':
+              if (e.event === 'follow') {
+                e.message = [
+                  {
+                    type: 'text',
+                    text: `阿囉哈～ ${userDisplayName}`
+                  },
+                  e.message
+                ]
+              }
               return client.pushMessage(e.target, e.message)
             default:
               throw new TypeError('Unknown handler for LINE client!')

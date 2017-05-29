@@ -7,12 +7,14 @@ module.exports = () => {
         case 'follow':
           return {
             target: event.source.userId,
+            event: 'follow',
             type: 'push',
-            message: { type: 'text', text: `阿囉哈～ 😘` }
+            message: { type: 'text', text: '感謝加我為好友呦🤗' }
           }
         case 'unfollow':
           return {
             target: event.source.userId,
+            event: 'unfollow',
             type: 'push',
             message: { type: 'text', text: `不要走😭😭😭\n不過你收的到這個訊息嗎？` }
           }

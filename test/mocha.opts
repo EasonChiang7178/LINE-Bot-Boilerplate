@@ -2,3 +2,4 @@
 --require chai
 --reporter nyan
 --ui bdd
+--recursive ./test/spec

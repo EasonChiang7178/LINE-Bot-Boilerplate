@@ -1,4 +1,6 @@
 const urls = require('./urls')
+const request = require('../../utils').request
+const toArray = require('../../utils').toArray
 
 class client {
   constructor(config) {
@@ -17,25 +19,25 @@ class client {
   }
 
   replyMessage(replyToken, messages) {
-    return fetch(
+    return request(
       this.post(urls.reply, {
         replyToken,
-        messages: Array.isArray(messages) ? messages : [messages]
+        messages: toArray(messages)
       })
     )
   }
 
   pushMessage(to, messages) {
-    return fetch(
+    return request(
       this.post(urls.push, {
         to,
-        messages: Array.isArray(messages) ? messages : [messages]
+        messages: toArray(messages)
       })
     )
   }
 
   getProfile(userId) {
-    return fetch(this.get(urls.profile(userId)))
+    return request(this.get(urls.profile(userId)))
   }
 
   post(url, body) {

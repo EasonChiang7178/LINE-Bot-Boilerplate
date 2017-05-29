@@ -29,7 +29,7 @@ module.exports = router => {
                 e.message = [
                   {
                     type: 'text',
-                    text: `阿囉哈～ ${userProfile.displayName}`
+                    text: `阿囉哈 ${userProfile.displayName}!`
                   },
                   e.message
                 ]

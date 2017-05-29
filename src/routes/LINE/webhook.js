@@ -9,8 +9,6 @@ module.exports = router => {
     lineVerify(),
     async (ctx, next) => {
       ctx.request.body = ctx.request.fields.events || ctx.request.body.events
-      console.log(ctx.request.headers)
-      console.log(ctx.request.fields)
       await next()
 
       const client = new Client(ctx.config)

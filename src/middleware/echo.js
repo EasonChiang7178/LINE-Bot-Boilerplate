@@ -1,3 +1,5 @@
+const emoji = require('node-emoji')
+
 module.exports = () => {
   return async (ctx, next) => {
     const events = ctx.request.body
@@ -9,14 +11,17 @@ module.exports = () => {
             target: event.source.userId,
             event: 'follow',
             type: 'push',
-            message: { type: 'text', text: '感謝加我為好友呦🤗' }
+            message: { type: 'text', text: emoji.emojify('感謝加我為好友呦:blush:') }
           }
         case 'unfollow':
           return {
             target: event.source.userId,
             event: 'unfollow',
             type: 'push',
-            message: { type: 'text', text: `不要走😭😭😭\n不過你收的到這個訊息嗎？` }
+            message: {
+              type: 'text',
+              text: emoji.emojify(`不要走:sob::sob::sob:\n不過你收的到這個訊息嗎？`)
+            }
           }
         case 'message':
           return {

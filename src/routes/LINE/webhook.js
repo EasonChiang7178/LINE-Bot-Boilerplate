@@ -9,6 +9,7 @@ module.exports = router => {
     lineVerify(),
     async (ctx, next) => {
       ctx.request.body = ctx.request.fields.events || ctx.request.body.events
+      console.log(JSON.stringify(ctx.request.headers, null, 2))
       console.log(JSON.stringify(ctx.request.body, null, 2))
       await next()
 

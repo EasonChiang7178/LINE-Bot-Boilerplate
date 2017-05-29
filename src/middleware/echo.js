@@ -38,6 +38,12 @@ module.exports = () => {
   }
 }
 
+/**
+ * Echo message with its corresponding type
+ * @param {Object} message - The income message object
+ * @param {String} message.type - The type of the message
+ * @return {Object} - The message object to response
+ */
 function echoMessage(message) {
   switch (message.type) {
     case 'text':

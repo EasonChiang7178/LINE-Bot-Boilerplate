@@ -16,10 +16,10 @@ module.exports = router => {
       const events = ctx.request.events
       const results = await Promise.all(
         events.map(async e => {
-          let userDisplayName = ''
+          let userProfile = {}
           if (e.event === 'follow') {
             const name = await client.getProfile(e.target)
-            userDisplayName = await name.json()
+            userProfile = await name.json()
           }
 
           switch (e.type) {
@@ -30,7 +30,7 @@ module.exports = router => {
                 e.message = [
                   {
                     type: 'text',
-                    text: `阿囉哈～ ${userDisplayName}`
+                    text: `阿囉哈～ ${userProfile.displayName}`
                   },
                   e.message
                 ]

@@ -1,4 +1,6 @@
 const crypto = require('crypto')
+const SignatureValidationFailed = require('../../exceptions')
+  .SignatureValidationFailed
 
 const validateSignature = (body, channelSecret, signature) => {
   const hash = crypto
@@ -24,8 +26,10 @@ module.exports.koaValidateMiddleware = () => {
     ) {
       await next()
     } else {
-      // TODO: throw validation error here
-      console.error('VALIDATION FAILED!') // eslint-disable-line no-console
+      throw new SignatureValidationFailed(
+        'LINE signature validation failed',
+        xLineSignature
+      )
     }
   }
 }

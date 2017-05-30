@@ -1,7 +1,7 @@
 {
   "name": "LINE-Bot-Boilerplate",
   "version": "0.1.0",
-  "description": "LINE-Bot Boilerplate by Koa2",
+  "description": "LINE Bot Boilerplate by Koa",
   "main": "src/app.js",
   "author": "Eason Chiang",
   "license": "MIT",
